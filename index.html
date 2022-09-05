@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>river</title>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e43960946c2b41769e1c34647b48533"></script>  <!-- 카카오 api -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="/assets/js/api.js"></script>
+    <script src="https://kit.fontawesome.com/0d14cf1050.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <div id="wrap">
+
+        <!-- top -->
+        <div class="top-bar">
+
+            <a href = "index">
+                <div class="top-box1">
+                    <img src="images/busan2.png">
+                </div>
+            </a>
+
+            <div class="top-box2">
+
+                <ul class="menu-box">
+                    <li>공간정보
+                        <ul class="sub-menu">
+                            <li><a href="http://www.nsdi.go.kr">국가공간정보 포털</a></li>
+                            <li><a href="https://www.ngii.go.kr">국토정보 플랫폼</a></li>
+                            <li><a href="https://www.eum.go.kr">토지 이음</a></li>
+                        </ul>
+                    </li>
+                    <li>지반관련
+                        <ul class="sub-menu">
+                            <li><a href="https://www.geoinfo.or.kr/">국토지반정보 통합</a></li>
+                            <li>지하 안전정보 시스템</li>
+                            <li>-</li>
+                        </ul>
+                    </li>
+                    <li class="river">하천관련
+                        <ul class="sub-menu">
+                            <li>수자원관리 시스템</li>
+                            <li>하천관리 시스템</li>
+                            <li>하수도정보 시스템</li>
+                        </ul>
+                    </li>
+                    <li>환경관련
+                        <ul class="sub-menu">
+                            <li>국토환경 평가지도</li>
+                            <li>환경영향평가 시스템</li>
+                            <li>-</li>
+                        </ul>
+                    </li>
+                    <li>토목관련</li>
+                </ul>
+
+            </div>
+
+        </div>
+        <!-- top end -->
+        
+        <!--map-->
+       <div class="map-bar">
+
+           <!--middle-left-->
+           <div class="middle-left">
+
+               <div class="middle-left-box1">주소조회</div>
+               <div class="middle-left-box2">
+
+                   <div class="middle-left-bar">
+                       <div class="middle-left-bar-box1">시군</div>
+                       <div class="middle-left-bar-box2">
+                           <select style="width: 178px; border: 1px solid #bbb;">
+                               <option>부산시</option>
+                               <option>대구시</option>
+                               <option>제주시</option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div class="middle-left-bar">
+                       <div class="middle-left-bar-box1">읍면동</div>
+                       <div class="middle-left-bar-box2">
+                           <select style="width: 178px; border: 1px solid #bbb;">
+                               <option>좌동</option>
+                               <option>우동</option>
+                               <option>장산</option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div class="middle-left-bar">
+                       <div class="middle-left-bar-box1">지번</div>
+                       <div class="middle-left-bar-box2"><input type="text" style="height: 35px; border: 1px solid #bbb;"></div>
+                   </div>
+
+                   <div class="middle-left-bar">
+                       <div class="middle-left-button">
+                           조회
+                       </div>
+                   </div>
+               </div>
+
+               <div class="middle-left-box3">
+                   
+                   <div class="middle-left-bar-box3">검색결과</div>
+                   <div class="middle-left-bar-box4">&nbsp;검색을 수행하세요</div>
+                   
+                   <div class="middle-left-bar-box5">
+                    <br>
+                    <div class="radio-top">지도구분</div>
+                    <div class="radio-top-bar">
+                        <div class="radio-top-box1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="check1" checked="checked">
+                            <label for="check1"></label>
+                        </div>
+                        <div class="radio-top-box2">
+                            <img src="images/UI-11.png">
+                        </div>
+                        <div class="radio-top-box3">측점</div>
+                    </div>
+
+                    <div class="radio-top-bar">
+                        <div class="radio-top-box1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="check2" checked="checked">
+                            <label for="check2"></label>
+                        </div>
+                        <div class="radio-top-box2">
+                            <img src="images/UI-33.png">
+                        </div>
+                        <div class="radio-top-box3">공사구간</div>
+                    </div>
+                     
+                    <div class="radio-top-bar">
+                        <div class="radio-top-box1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" id="check3" checked="checked">
+                            <label for="check3"></label>
+                        </div>
+                        <div class="radio-top-box2">
+                            <img src="images/UI-22.png">
+                        </div>
+                        <div class="radio-top-box3">시추공</div>
+                    </div>
+                   
+                    </div>
+               </div>
+
+           </div>
+           <!--middle-left end-->
+
+
+           <!--middle-right -->
+           <div class="middle-right">
+
+
+               <div class="middle-right-bar1">
+
+                   <div class="middle-right-box1">
+                       <div class="middle-right-title">&nbsp;좌표검색 : </div>
+                       <div class="middle-right-select">
+                           <select style="border: 1px solid #bbb;">
+                               <option>타원체 선택</option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div class="middle-right-box2">
+                       <div class="middle-right-title">사업검색 : </div>
+                       <div class="middle-right-select">
+                           <select style="border: 1px solid #bbb;">
+                               <option>사업명</option>
+                           </select>
+
+                           <select style="border: 1px solid #bbb;">
+                               <option>지반업체</option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div class="middle-right-box3"></div>
+
+               </div>
+
+               <div class="middle-right-bar2">
+
+                    <div class="middle-right-mini-bar">
+                        <div class="mini-top">CAD</div>
+                        <div class="mini-box"></div>
+                    </div>
+
+                   <!-- Modal.2 -->
+
+                   <!-- Scrollable modal -->
+                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                            <br>
+                            <div>
+                                <h5> ◆ 과업현황</h5><br>
+                                <table class="table-box">
+                                    <tr>
+                                        <th>과업명</th>
+                                        <td>덕천동~아시아드 주경기장간(만덕3터널) 도로실시 설계</td>
+                                        <th>발주처명</th>
+                                        <td>부산광역시</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>과업기간</th>
+                                        <td>2014.12 ~ 2015.12</td>
+                                        <th>총연장</th>
+                                        <td>4.37km</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>시점</th>
+                                        <td>부산광역시 북구 덕천동 은마아파트</td>
+                                        <th>종점</th>
+                                        <td>부산광역시 연제구 거제동 부산개인택시회관</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <br><br>
+                            <div>
+                                <h5> ◆ 도로의 종류</h5><br>
+                                <table class="table-box">
+                                    <tr>
+                                        <th>도로의 구분</th>
+                                        <td>도시지역 보조간선도로</td>
+                                        <th>설계속도</th>
+                                        <td>60km/hr</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>도로연장</th>
+                                        <td>
+                                            <ul>
+                                                <li>총 연장 4.37km</li>
+                                                <li>도로정비 : 1.68km</li>
+                                                <li>접속도로 : 0.499km</li>
+                                                <li>터    널 : 2.241km</li>
+                                            </ul>
+                                        </td>
+                                        <th>폭원</th>
+                                        <td>B=20m ~ 45m(4차로)</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <br><br>
+                            <div>
+                                <h5> ◆ 도시계획시설결정 현황</h5><br>
+                                <table class="table-box">
+                                    <tr>
+                                        <th  style="width: 250px;">도시계획시설</th>
+                                        <td style="width: 250px;">대로 000호선</td>
+                                        <td style="width: 250px;"></td>
+                                        <td style="width: 250px;"></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <br><br>
+                            <div>
+                                <h5> ◆ 기하구조</h5><br>
+                                <table class="table-box">
+                                    <tr>
+                                        <th colspan="2" rowspan="2">구분</th>
+                                        <th rowspan="2">단위</th>
+                                        <th>기준</th>
+                                        <th>적용</th>
+                                        <th rowspan="2">비교</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="text-align: center;">설계속도 60km/hr</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">최소평면곡선반경</td>
+                                        <td>m</td>
+                                        <td>140</td>
+                                        <td>80</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">최소곡선연장</td>
+                                        <td>θ ≥ 5˚</td>
+                                        <td>m</td>
+                                        <td>70</td>
+                                        <td>87.22</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>θ ＜ 5˚</td>
+                                        <td>m</td>
+                                        <td>350 / θ</td>
+                                        <td>-</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="3">최대종단경사</td>
+                                        <td>평지</td>
+                                        <td>%</td>
+                                        <td>5 (7)</td>
+                                        <td>2.98</td>
+                                        <td rowspan="3">
+                                            <p>( ) : 부득이한<br>경우 적용</p> 
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>산지</td>
+                                        <td>%</td>
+                                        <td>8 (9)</td>
+                                        <td>8.99</td>
+                                    </tr>
+                                    <tr>
+                                        <td>터널구간</td>
+                                        <td>%</td>
+                                        <td>-</td>
+                                        <td>1.25</td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">최소종단곡선<br>변화비율</td>
+                                        <td>凸</td>
+                                        <td>m/%</td>
+                                        <td>15</td>
+                                        <td>15.08</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>凹</td>
+                                        <td>m/%</td>
+                                        <td>15</td>
+                                        <td>15.07</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">최소종단곡선장</td>
+                                        <td>m</td>
+                                        <td>50</td>
+                                        <td>50</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">표준횡단경사</td>
+                                        <td>%</td>
+                                        <td>2</td>
+                                        <td>2</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">최대평경사</td>
+                                        <td>%</td>
+                                        <td>6</td>
+                                        <td>6</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">완화곡선의 최소길이</td>
+                                        <td>m</td>
+                                        <td>35</td>
+                                        <td>35.10</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">설계하중</td>
+                                        <td></td>
+                                        <td colspan="2">DB-24</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                   <!-- Modal.2 end-->
+
+                   <!-- Scrollable modal2 -->
+                   <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                            <img src="images/sch-table.png">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                   <!-- Modal.3 end-->
+
+
+                   <!--icon-->
+                   <!-- <div class="map-icons">
+
+                       <div class="map-p"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+
+                       <div class="map-m"><i class="fa-solid fa-magnifying-glass-minus"></i></div>
+
+                   </div> -->
+                   <!--icon end-->
+
+
+                   <div class="spot-box">
+                       <i class="fa-solid fa-location-dot fa-flip" style="--fa-animation-duration: 4s; font-size: 30px;"></i>
+                   </div>
+
+                   <div class="spot-box2">
+                    <div>
+                        <img src="images/UI-22.png">
+                        </div>
+                   </div>
+
+                   <!--modal.1-->
+                   <div id="modal">
+
+                       <div class="modal-top">
+                           <div class="modal-title">&nbsp;&nbsp;&nbsp;&nbsp;
+                               &nbsp;&nbsp;&nbsp;&nbsp;지역 : 만덕3터널
+                           </div>
+                           <div class="close"><i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;</div>
+                       </div>
+
+                       <div class="content">
+                           <br><br>
+                           <p> 도로실시설계 </p><br>
+                           <p>과업기간 : 2014.12 ~ 2015.12</p>
+                           <br>
+                           <button type="button" class="btn btn-primary button2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                               자세히
+                           </button>
+
+                       </div>
+                   </div>
+
+                   <div id="modal2">
+
+                    <div class="modal-top2">
+                        <div class="modal-title2">&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </div>
+                        <div class="close2"><i class="fa-solid fa-xmark"></i>&nbsp;&nbsp;</div>
+                    </div>
+
+                    <div class="content2">
+                        <img width="500" height="350" src="images/sch.png">
+                        <button type="button" class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                            자세히
+                        </button>
+
+                    </div>
+                </div>
+                   <!--modal.1 end-->
+
+               </div>
+
+           </div>
+           <!--middle-right end-->
+
+
+
+
+       </div>
+       <!--map end-->
+
+
+       <!-- bottom -->
+       <div class="bottom-bar">
+            <div class="bottom-box1"></div>
+
+            
+            <div class="bottom-box2"></div> 
+        </div>
+        <!-- bottom end -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="/main.js"></script>
+</body>
+</html>
+
+<script>
+
+    $(".menu-box>li").mouseover(function(){
+        $(this).children(".sub-menu").stop().slideDown();
+    });
+
+    $(".menu-box>li").mouseleave(function(){
+        $(this).children(".sub-menu").stop().slideUp();
+    });
+
+
+    $('.spot-box').click(function(){
+        $("#modal").fadeIn("block");
+    });
+
+    $('.spot-box2').click(function(){
+        $("#modal2").fadeIn("block");
+    });
+
+
+    $('.close').click(function(){
+        $("#modal").fadeOut(400);
+    });
+
+    $('.close2').click(function(){
+        $("#modal2").fadeOut(400);
+    });
+
+    $('.middle-right-mini-bar').click(function(){
+        $(".middle-right-mini-bar").fadeOut(400);
+    });
+
+</script>
